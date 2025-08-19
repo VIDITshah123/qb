@@ -7,7 +7,7 @@ import { useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage'; 
 import ProtectedRoute from './components/ProtectedRoute';
-
+import AddQuestionPage from './pages/AddQuestionPage';
 // --- Placeholder Pages ---
 
 // const DashboardPage = () => {
@@ -35,27 +35,57 @@ const HomePage = () => (
 );
 
 function App() {
+  // const { user } = useAuth();
+  // return (
+  //     <div>
+  //         {/* You can remove the main H1 and HR if you want a cleaner look */}
+  //         <Routes>
+  //             <Route path="/" element={<HomePage />} />
+
+  //             <Route
+  //                 path="/login"
+  //                 element={user ? <Navigate to="/dashboard" /> : <LoginPage />}
+  //             />
+
+  //             <Route
+  //                 path="/dashboard"
+  //                 element={
+  //                     <ProtectedRoute>
+  //                         {/* USE THE REAL DASHBOARD PAGE HERE */}
+  //                         <DashboardPage />
+  //                     </ProtectedRoute>
+  //                 }
+  //             />
+  //         </Routes>
+  //     </div>
+  // );
+  //Add Question' feature for Question Writersdone at this commit(before)
+
   const { user } = useAuth();
   return (
       <div>
-          {/* You can remove the main H1 and HR if you want a cleaner look */}
           <Routes>
-              <Route path="/" element={<HomePage />} />
-
-              <Route
-                  path="/login"
-                  element={user ? <Navigate to="/dashboard" /> : <LoginPage />}
-              />
+              {/* ... (other routes remain the same) ... */}
 
               <Route
                   path="/dashboard"
                   element={
                       <ProtectedRoute>
-                          {/* USE THE REAL DASHBOARD PAGE HERE */}
                           <DashboardPage />
                       </ProtectedRoute>
                   }
               />
+
+              {/* --- ADD THIS NEW ROUTE --- */}
+              <Route
+                  path="/add-question"
+                  element={
+                      <ProtectedRoute>
+                          <AddQuestionPage />
+                      </ProtectedRoute>
+                  }
+              />
+               {/* --- END NEW ROUTE --- */}
           </Routes>
       </div>
   );
